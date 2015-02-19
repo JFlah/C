@@ -1,3 +1,6 @@
+// HW 2 Jack Flaherty
+// Program which recognizes a pattern GCAG in a given string, how many matches, whether or not they were contiguous or non-contiguous matches
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MAXCHAR 81
@@ -15,13 +18,13 @@ int main() {
 	char *p,*q,*r;
 	int n,m,x,y;
 	getarray(&text);
-	
+
 	printIt(text);
-	
+
 	findMatchC(text);
 	findMatchNC(text);
 	printf("You have %d matches\n", matchCount(text));
-	
+
 	free(text);
 }
 
@@ -32,14 +35,14 @@ void getarray(char **txt) {
 	int size=0, arySize=MAXCHAR;
 	b=getchar();
 	while (b != '\n') {
-	
+
 		if (size>=arySize) {
 			arySize *= 2;
 			t = realloc(t, arySize);
 		}
-	
+
 		*(t+size) = b; // size=0 first loop
-		
+
 		size++;
 		b = getchar();
 	}
@@ -54,7 +57,7 @@ void getarray(char **txt) {
 void printIt(char *ptr) {
 	char c=*ptr;
 	int i=0;
-	
+
 	while(c!='\0'){
 		printf("%c", c);
 		i++;
@@ -68,7 +71,7 @@ char * findMatchC(char *t) {
 	enum State current = S;
 	char ch=*t;
 	int i=0, matchLocation;
-	
+
 	while(ch!='\0') {
 		switch(current) {
 			case S:
@@ -103,7 +106,7 @@ char * findMatchC(char *t) {
 		i++;
 		ch=*(t+i);
 	}
-	
+
 	printf("No contiguous match\n");
 	return NULL;
 
@@ -115,7 +118,7 @@ char * findMatchNC(char *t) {
 	char ch=*t;
 	int i=0, matchLocation;
 	int skippedChars=0;
-	
+
 	while(ch!='\0') {
 		switch(current) {
 			case S:
@@ -152,7 +155,7 @@ char * findMatchNC(char *t) {
 		i++;
 		ch=*(t+i);
 	}
-	
+
 	printf("No non-contiguous match\n");
 	return NULL;
 
@@ -163,7 +166,7 @@ int matchCount(char *t) {
 	enum State current = S;
 	char ch=*t;
 	int i=0, numMatches=0;
-	
+
 	while(ch!='\0') {
 		switch(current) {
 			case S:

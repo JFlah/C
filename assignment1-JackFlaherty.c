@@ -1,4 +1,5 @@
 // HW1 Jack Flaherty
+// Program which recognizes comments /*comment*/ in a given string and will remove comment from string, return given string without comment
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,7 +31,7 @@ int getLine(char *line){
 	b=getchar();
 	while (b != '\n' && size < 80) {
 		*(a+size) = b; // size=0 first loop
-		
+
 		size++;
 		b = getchar();
 	}
@@ -54,7 +55,7 @@ void printFilter(char *line, int size) {
 
 	while (i<size) {
 		ch = *(a+i);
-		
+
 		switch (current) {
 			case BeforeCmt:
 				if (ch=='/')
